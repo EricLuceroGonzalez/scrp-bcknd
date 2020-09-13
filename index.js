@@ -1,7 +1,7 @@
 const { app, port } = require("./server");
 
 // pull database from ./database/index.js
-// require("./database");
+require("./database");
 
 
 // Start the server

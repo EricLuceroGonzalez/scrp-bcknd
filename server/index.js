@@ -3,15 +3,13 @@ const app = express();
 const cors = require("cors");
 var dotenv = require("dotenv");
 var bodyParser = require("body-parser");
-// const users = require("../routes/user-routes");
+const scrpData = require('../routes/scrp-route');
 
 dotenv.config();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(cors());
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: true })); // image thing
-app.use(bodyParser.json({ limit: "50mb", extended: true })); // image thing
+app.use(bodyParser.urlencoded({ limit: "150mb", extended: true })); // image thing
+app.use(bodyParser.json({ limit: "150mb", extended: true })); // image thing
 
 // Initialize CORS middleware
 app.use(function (req, res, next) {
@@ -23,10 +21,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.use("/api/user", users);
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('/api/postData', scrpData)
+
+// // app.use("/api/user", users);
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
 
 // Error handler when no endpoint or direction is found "NEXT()""
 app.use((req, res, next) => {
